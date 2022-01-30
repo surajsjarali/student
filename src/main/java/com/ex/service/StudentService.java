@@ -15,12 +15,13 @@ public class StudentService {
 	@Autowired
 	StudentRepository rs;
 	public void insertIntoDB(StudentModel student) {
-		log.info("in save");
+		log.info("in save{}",student.getName());
 		rs.save(student);
 	}
 	
-	public void fetchFromDB() {
+	public String fetchFromDB() {
 		log.info(rs.findAll().toString());
+		return rs.findAll().toString();
 	}
 
 	public void fetchFromDBbyId(String id) {

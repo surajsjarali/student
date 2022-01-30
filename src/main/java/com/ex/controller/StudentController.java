@@ -8,19 +8,19 @@ import com.ex.service.StudentService;
 
 import javax.validation.Valid;
 
+
 @RestController
 @RequestMapping("/student/v1")
 public class StudentController {
 	@Autowired
 	StudentService service;
 	@GetMapping("/get")
-	public void getData(@Valid @RequestParam(required = false) String id) {
-		//System.out.println("In get"+id);
-		service.fetchFromDB();
+	public String getData(@Valid @RequestParam(required = false) String id) {
+		return service.fetchFromDB();
 	}
 
 	@GetMapping("/get/{id}")
-	public void getData1( @PathVariable String id) {
+	public void getData1(@Valid @PathVariable String id) {
 
 		service.fetchFromDBbyId(id);
 	}
@@ -30,12 +30,12 @@ public class StudentController {
 		service.insertIntoDB(student);
 	}
 	@PutMapping("/put")
-	public void putdata(@RequestBody StudentModel student) {
+	public void putdata(@Valid @RequestBody StudentModel student) {
 		service.updateValuesInDB(student);
 	}
 
 	@DeleteMapping("/delete")
-	public void deleteData(@RequestParam int roll_no) {
+	public void deleteData(@Valid @RequestParam int roll_no) {
 		service.deleteFromDB(roll_no);
 	}
 }
